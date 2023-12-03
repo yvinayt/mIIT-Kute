@@ -1,0 +1,60 @@
+<%- include('./partials/header') %>
+
+    <h1 class="ongoing ">Edit Profile</h1>
+    <br>
+    <form action="/editprofile/?_method=PUT" enctype="multipart/form-data" method="POST">
+        <section class="Profile">
+            <div class="file-input">
+                <label for="file">Change profile pic</label>
+                <input type="file" id="file" class="file" name="dp">
+            </div>
+            <div class="altbox">
+                <div class="box profile_box">
+                    <div class="name">
+                        <span class="label">Name</br> <span class="Editable_info"><input type="text" class="name_box" name="Name" value="<%=userdata.Name%>"></span></span>
+                        <br>
+                    </div>
+                    <div class="roll">
+                        <span class="label">Roll no.</br><span class="Editable_info"><input type="number" class="name_box" name="roll" value="<%=userdata.roll%>"></span></span>
+                        <br>
+                    </div>
+                    <div class="mail">
+                        <span class="label">Email Id</br><span class="Editable_info"><%= userdata.email%></span></span>
+                        <br>
+                    </div>
+                    <div class="username">
+                        <span class="label">Username</br><span class="Editable_info"><%= userdata.name%></span></span>
+                    </div>
+                </div>
+                <div class="box profile_box">
+                    <div class="name">
+                        <span class="label editintrst">Edit your interests</br><span class="Editable_info"></span></span>
+                    </div>
+                    <div class="interests">
+                        <span class="label">Interest 1: <span class="Editable_info"> <input type="text" class="name_box" value="<%=userdata.interest1%>" name="interest1"></span>
+                        <span class="label">Interest 2: <span class="Editable_info"><input type="text" class="name_box" name="interest2" value="<%=userdata.interest2%>"></span>
+                        <span class="label">Interest 3: <span class="Editable_info"></span><input type="text" class="name_box" name="interest3" value="<%=userdata.interest3%>"></span>
+                        <span class="label">Interest 4: <span class="Editable_info"></span><input type="text" class="name_box" name="interest4" value="<%=userdata.interest4%>"></span>
+                        <span class="label">Interest 5: <span class="Editable_info"><input type="text" class="name_box" name="interest5" value="<%=userdata.interest5%>"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="Profile">
+            <!-- <div class="Profile_pic">
+                <input type="file">
+            </div> -->
+            <!-- <label class="file">
+                <input type="file" id="file" aria-label="File browser example">
+                <span class="file-custom"></span>
+            </label> -->
+        </section>
+        <div class="submit_button_div">
+            <button type="submit" class="submit">Submit</button>
+        </div>
+        <br><br>
+    </form>
+</body>
+
+</html>

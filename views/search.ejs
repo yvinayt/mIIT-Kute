@@ -1,0 +1,82 @@
+<%- include('./partials/header') %>
+
+<h1 class="ongoing ">Search your events</h1>
+<br>
+    <section class="events">
+        <form action="/find-event" method="GET" onsubmit="return validateSearch()">
+            <select onchange="chooseType()" name="type" class="search" id="type">
+                <option value="text">Name</option>
+                <option value="time">Starting Time</option>
+                <option value="location">Location</option>
+                <!-- <option value="number">Participants</option> -->
+            </select><br>
+            <input type="text" id="searchBox" name="search" placeholder="22-2-2022"  class="search"><br>
+            <button type="submit" id="findsubmitbtn" class="submit">Search</button>
+        </form>
+    </section>
+
+    <section class="events">
+        <% allevents.forEach((event) => { %>
+            <div class="box">
+                <h1 class="event">
+                    <%= event.name %>
+                </h1>
+                <p class="time">
+                    <%= event.startAt %> - <%= event.endAt %>
+                </p>
+                <p class="time">
+                    <%= event.location %>
+                </p>
+                <p class = "participants">
+                Participants : <%= event.members.length %>
+                </p>
+                <br>
+                <% if(event.members.includes(user_emailid)){ %>
+                    <form class="join joinedbtn" action="/joinevent/<%=event._id%>?_method=PUT" method="POST"><button class="join-btn joinedbtn" type="submit">Joined</button></form>
+                <% } else{ %>
+                    <form class="join joinbtn" action="/joinevent/<%=event._id%>?_method=PUT" method="POST"><button class="join-btn joinbtn" type="submit">Join</button></form>
+                <% } %>
+            </div>
+        <% }) %>
+    </section>
+
+    <% if(!isAvailable){ %>
+        <div class="box">
+            Couldn't find an event? Create one...
+            <br><br>
+            <div class="myprofile">
+                <a href="/createevent" class="button"><span class="submit_text"> Create event</span> </a>
+            </div>
+        </div>
+    <%} else { %>
+        <div class="box">
+            Not Interested in an event? Create one...
+            <br><br>
+            <div class="myprofile">
+                <a href="/createevent" class="button"><span class="submit_text"> Create event</span> </a>
+            </div>
+        </div>
+    <%} %>
+
+
+    <script>
+        chooseType();
+        function validateSearch() {
+            let searchInput = document.getElementById("search").value;
+            let searchValidInput = searchInput.trim();
+            if(searchValidInput) {
+                return true;
+            }
+            alert("Search Box is empty");
+            return false;
+        }
+        function chooseType(){
+            let searchBox = document.getElementById("searchBox");
+            let optionType = document.getElementById("type");
+            searchBox.type = optionType.value;
+            if(optionType.value=="text") searchBox.placeholder = "Enter name or location of event";
+        }
+    </script>
+
+</body>
+</html>

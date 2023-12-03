@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="css/signup.css">
+        <title>Register</title>
+    </head>
+    <body>
+        <section class="logo">
+            <img src="img/logo.png" alt="logo">
+        </section>
+        <br>
+        <div class="BOX">
+            <h2 class="signin">Welcome New User</h2>
+            <form action="/signup?_method=POST" method="POST">
+                <span class="user">Username</span><br>
+                <input type="text" class="userbox" id="username" name="name" required><br><br>
+                <span class="username">Email</span><br>
+                <input type="text" class="usernamebox" id="email" name="email" placeholder="IITK email id" required>
+                <br><br>
+                <span class="password">Enter a password</span> <br>
+                <input type="password" class="passbox" id="password" name="password" required> <br><br>
+                <span class="password">Confirm Password</span> <br>
+                <input type="password" class="passbox" id="confirm-password" name="confirm-password" required> <br><br>
+                <div id="err" class="error">hehe</div>
+                <br>
+                <button type="submit" class="submit" onclick="return verifyDetails()"><span class="submit_text">Register</span></button>
+                <br><br>
+                <span class="newuser">Account have an account? </span><a href="signin" class="register"><span class="here">Signin</span></a>
+                <br><br>
+            </form>
+        </div>
+        <br><br><br><br><br>
+        <footer>
+            <span class="contact_text">Contact Us:</span>
+            <br><br>*******@iitk.ac.in
+        </footer>
+    </body>
+    <script>
+        function verifyDetails(){
+            pw1 = document.getElementById('password').value;
+            pw2 = document.getElementById('confirm-password').value;
+            email = document.getElementById('email').value;
+            if(!email.endsWith('@iitk.ac.in')){
+                document.getElementById('err').style.opacity = "1";
+                document.getElementById('err').innerHTML = "You should register using IITK Email ID";
+                return false;
+            }
+            if(pw1!=pw2){
+                document.getElementById('err').style.opacity = "1";
+                document.getElementById('err').innerHTML = "Password does not match";
+                return false;
+            }
+        }
+    </script>
+</html>
